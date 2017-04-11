@@ -1,0 +1,72 @@
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">{{titulo}}</h1>
+	</div>
+</div>
+<form #formEmpresa = "ngForm" (ngSubmit)="onSubmit()" >
+	
+	<div class="row">
+		<div class="col-lg-4">
+			<div class="form-group">
+				<label>Nombre:</label>
+				<input type="text" #nombre="ngModel"  [(ngModel)]="empresa.NOMBRE" class="form-control"  name="nombre" required/>
+				<span *ngIf="!nombre.valid">El nombre es obligatorio</span>
+			</div>
+		</div>
+
+
+		<div class="col-lg-4">
+			<div class="form-group">
+				<label>Numero Identificacion:</label>
+				<input type="text" #numeroIdentificacion="ngModel"  class="form-control" 
+				[(ngModel)]="empresa.NUMERO_IDENTIFICACION" name="numeroIdentificacion" required>
+				<span *ngIf="!numeroIdentificacion.valid">El numero de identificacion es obligatorio</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-4">
+			<div class="form-group">
+				<label>Nombre Comercial:</label>
+				<input type="text" #nombreComercial="ngModel"   class="form-control" 
+				[(ngModel)]="empresa.NOMBRE_COMERCIAL" name="nombreComercial" required>
+				<span *ngIf="!nombreComercial.valid">El nombre comercial es obligatorio</span>
+			</div>
+		</div>
+
+		<div class="col-lg-4">
+			<div class="form-group">
+				<label>Observaciones:</label>
+				<input type="text" #observaciones="ngModel" class="form-control" 
+				[(ngModel)]="empresa.OBSERVACIONES"  name="observaciones"  required>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-4">
+			<div class="form-group">
+				<label>Industria Tipo</label>
+				<select  [(ngModel)]="empresa.KEY_TIPO_INDUSTRIA" 
+				[ngModelOptions]="{standalone: true}"
+				#idIndustriaTipo class="form-control" required>
+				<option [ngValue]="0">Seleccione</option>
+				<option  [ngValue]="industriaTipo.KEY" *ngFor="let industriaTipo of industriasTipo">
+					{{industriaTipo.DESCRIPCION}}
+				</option>
+			</select>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-4">
+		<div class="form-group">
+			<button type="submit"  class="btn btn-inline btn-primary" [disabled]="!formEmpresa.form.valid" >
+				<span class="glyphicon glyphicon-ok"></span> Registrar
+			</button>
+		</div>
+	</div>
+</div>
+
+</form>
